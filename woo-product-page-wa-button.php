@@ -9,7 +9,7 @@
  *
  * @wordpress-plugin
  * Plugin Name:   Woo Product Page Wa Button
- * Plugin URI:    https://github.com/salvymc
+ * Plugin URI:    https://github.com/salvymc/Woo-Product-Page-Wa-Button
  * Description:   Add whatsapp button on the product page
  * Version:       1.0.0
  * Author:        Salvatore Forino
