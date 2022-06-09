@@ -14,5 +14,6 @@ Aggiungi il numero whatsapp con il prefisso nazionale nelle impostazioni del plu
 <b>ENG:<br>
 Add the whatsapp number with the country code in the plugin settings Ex: 391234567891 (without '+').
 
-![settings 2](https://user-images.githubusercontent.com/10051897/172735726-4a04f3bd-19f0-4ba1-9425-f8c47bc95958.PNG)
+![asd](https://user-images.githubusercontent.com/10051897/172958859-2e877a15-01b8-4cfb-a37c-4ff3530a13a6.PNG)
+
 ![settings](https://user-images.githubusercontent.com/10051897/172735731-88d32565-48dc-464d-abea-f244a428b1cc.PNG)
