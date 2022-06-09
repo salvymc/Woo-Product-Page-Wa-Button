@@ -5,13 +5,13 @@
  *
  * @package       WOOPRODUCT
  * @author        Salvatore Forino
- * @version       1.0.0
+ * @version       1.0.5
  *
  * @wordpress-plugin
  * Plugin Name:   Woo Product Page Wa Button
  * Plugin URI:    https://github.com/salvymc/Woo-Product-Page-Wa-Button
  * Description:   Add whatsapp button on the product page
- * Version:       1.0.1
+ * Version:       1.0.5
  * Author:        Salvatore Forino
  * Author URI:    https://github.com/salvymc
  * Text Domain:   woo-product-page-wa-button
@@ -44,10 +44,11 @@ function dbi_render_plugin_settings_page()
 {
 ?>
     <h2>Woo Product Page Wa Button</h2>
+    <hr>
     <form action="options.php" method="post">
         <?php
         settings_fields('woo_product_page_wa_button_options');
-        do_settings_sections('dbi_example_plugin'); ?>
+        do_settings_sections('woo_product_page_wa_button_sections'); ?>
         <input name="submit" class="button button-primary" type="submit" value="<?php esc_attr_e('Save'); ?>" />
     </form>
 <?php
@@ -56,9 +57,10 @@ function dbi_render_plugin_settings_page()
 function dbi_register_settings()
 {
     register_setting('woo_product_page_wa_button_options', 'woo_product_page_wa_button_options');
-    add_settings_section('api_settings', 'Settings', 'dbi_plugin_section_text', 'dbi_example_plugin');
+    add_settings_section('button_settings', 'Settings', 'dbi_plugin_section_text', 'woo_product_page_wa_button_sections');
 
-    add_settings_field('woo_product_page_wa_button_number', 'Phone', 'woo_product_page_wa_button_number', 'dbi_example_plugin', 'api_settings');
+    add_settings_field('woo_product_page_wa_button_number', 'Phone', 'woo_product_page_wa_button_number', 'woo_product_page_wa_button_sections', 'button_settings');
+    add_settings_field('woo_product_page_wa_button_text', 'Button text', 'woo_product_page_wa_button_text', 'woo_product_page_wa_button_sections', 'button_settings');
 }
 
 add_action('admin_init', 'dbi_register_settings');
@@ -74,9 +76,17 @@ function woo_product_page_wa_button_number()
     echo "<input id='woo_product_page_wa_button_number' name='woo_product_page_wa_button_options[wa_number]' type='text' value='" . esc_attr($options['wa_number']) . "' />";
 }
 
+function woo_product_page_wa_button_text()
+{
+    $options = get_option('woo_product_page_wa_button_options');
+    echo "<input id='woo_product_page_wa_button_text' name='woo_product_page_wa_button_options[wa_button_text]' type='text' value='" . esc_attr($options['wa_button_text']) . "' />";
+}
+
 add_action('woocommerce_after_add_to_cart_form', 'mish_before_add_to_cart_btn');
 
 function mish_before_add_to_cart_btn()
 {
-    echo '<a href="https://wa.me/+' . get_option('woo_product_page_wa_button_options')['wa_number'] . '"> <button class="btn button"><span class="dashicons dashicons-whatsapp"></span> ORDINA SU WHATSAPP</button></a>';
+    if (get_option('woo_product_page_wa_button_options')['wa_number']) {
+        echo '<a href="https://wa.me/+' . get_option('woo_product_page_wa_button_options')['wa_number'] . '"> <button class="woo_product_page_wa_button btn button"><span class="dashicons dashicons-whatsapp"></span> ' . get_option('woo_product_page_wa_button_options')['wa_button_text'] . '</button></a>';
+    }
 }
